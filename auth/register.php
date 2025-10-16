@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $db->prepare("INSERT INTO Users (id, full_name, email, password, role) VALUES (?, ?, ?, ?, ?)");
         $uuid = uuid();
         $stmt->execute([$uuid, $full_name, $email, $password, 'user']);
-        echo "<p style='color:green'>I Hope Registeration Is Done! <a href='login.php'>Login</a></p>";
+        echo "<p style='color:green'>I Hope The Registeration Is Done! <a href='login.php'>Login</a></p>";
     } catch (PDOException $e) {
         if (str_contains($e->getMessage(), 'UNIQUE')) {
             echo "<p style='color:red'>This email address has already used!</p>";
