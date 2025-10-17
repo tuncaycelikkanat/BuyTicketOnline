@@ -12,7 +12,10 @@ function user_role()
 function require_role($roles)
 {
     if (!is_login() || !in_array(user_role(), (array)$roles)) {
-        header('Location: ../login.php');
+        //echo "is_login: " . is_login() .  ", user_role(): " . user_role();
+        header('Location: ../auth/login.php');
         exit;
+    } else {
+        //echo "You are admin";
     }
 }
