@@ -19,3 +19,8 @@ function require_role($roles)
         //echo "You are admin";
     }
 }
+
+function uuid()
+{
+    return bin2hex(random_bytes(16));
+}

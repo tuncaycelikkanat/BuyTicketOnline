@@ -7,8 +7,3 @@ try {
 } catch (PDOException $e) {
     die("DB Connection Error: " . $e->getMessage());
 }
-
-function uuid()
-{
-    return bin2hex(random_bytes(16));
-}
