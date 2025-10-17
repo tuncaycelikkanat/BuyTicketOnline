@@ -14,7 +14,7 @@ include 'includes/functions.php';
 </head>
 
 <body>
-    <h1>Buy Ticket</h1>
+    <h1>Main Page</h1>
 
     <?php if (isset($_SESSION['user'])): ?>
         <p>Welcome, <strong><?= htmlspecialchars($_SESSION['user']['full_name']) ?></strong>!</p>
@@ -35,10 +35,12 @@ include 'includes/functions.php';
         <?php elseif (user_role() === 'user'): ?>
             <li><a href="routes.php">Search</a></li>
             <li><a href="my_tickets.php">My Tickets</a></li>
+            <li><a href="/auth/profile.php">My Account</a></li>
             <li><a href="/auth/logout.php">Logout</a></li>
 
         <?php elseif (user_role() === 'company'): ?>
             <li><a href="firma_panel.php">Firm Panel</a></li>
+            <li><a href="/auth/profile.php">My Account</a></li>
             <li><a href="/auth/logout.php">Logout</a></li>
 
         <?php elseif (user_role() === 'admin'): ?>

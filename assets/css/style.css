@@ -1,0 +1,32 @@
+.password-joke {
+    display: list-item;
+    position: relative;
+    padding-right: 150px;
+}
+
+.password-joke .hidden-password {
+    color: transparent;
+    user-select: none;
+    transition: color 0.3s;
+}
+
+.password-joke .hidden-password::after {
+    content: '•••••••••••';
+    color: #333;
+
+    position: absolute;
+    left: 80px;
+    top: 0;
+    z-index: 1;
+
+    transition: opacity 0.3s;
+}
+
+.password-joke:hover .hidden-password::after {
+    content: '';
+    opacity: 0;
+}
+
+.password-joke:hover .hidden-password {
+    color: #000;
+}
