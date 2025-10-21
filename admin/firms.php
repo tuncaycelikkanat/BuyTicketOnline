@@ -55,7 +55,8 @@ $firms = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <td><?= $firm['created_at'] ?></td>
                     <td>
                         <a href="firm_edit.php?id=<?= $firm['id'] ?>">Edit</a> |
-                        <a href="firms.php?delete=<?= $firm['id'] ?>" onclick="return confirm('You are deleting this company...')">Remove</a>
+                        <a href="firms.php?delete=<?= $firm['id'] ?>" onclick="return confirm('You are deleting this company...')">Remove</a> |
+                        <a href="firm_admins.php">Admins</a>
                     </td>
                 </tr>
             <?php endforeach; ?>
