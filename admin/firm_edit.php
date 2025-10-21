@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
-    <h1><?= $edit_mode ? '✏️ Company Edit' : '➕ Add Company' ?></h1>
+    <h1><?= $edit_mode ? 'Company Edit' : 'Add Company' ?></h1>
 
     <form method="POST" enctype="multipart/form-data">
         <label>Company Name:</label><br>
