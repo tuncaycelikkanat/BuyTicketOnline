@@ -7,7 +7,7 @@ require_role('admin');
 ?>
 
 <?php
-if (isset($_GET['delete'])) {
+if (isset($_GET['delete'])) { //delete uploaded photo also.
     $id = $_GET['delete'];
     $stmt = $db->prepare("DELETE FROM Bus_Company WHERE id = ?");
     $stmt->execute([$id]);

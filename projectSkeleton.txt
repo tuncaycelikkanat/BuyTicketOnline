@@ -33,7 +33,7 @@
 │   ├── index.php✅            # Admin ana sayfası
 │   ├── firms.php✅            # Firma CRUD
 │   ├── firm_edit.php✅
-│   ├── firm_admins.php      # Firma admin yönetimi
+│   ├── firm_admins.php✅      # Firma admin yönetimi
 │   ├── coupons.php          # Tüm sistem kupon yönetimi
 │   └── users.php            # Kullanıcı listesi (opsiyonel)
 │

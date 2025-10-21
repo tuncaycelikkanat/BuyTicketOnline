@@ -39,7 +39,7 @@ include 'includes/functions.php';
             <li><a href="/auth/logout.php">Logout</a></li>
 
         <?php elseif (user_role() === 'company'): ?>
-            <li><a href="firma_panel.php">Firm Panel</a></li>
+            <li><a href="/firm_admin/index.php">Firm Panel</a></li>
             <li><a href="/auth/profile.php">My Account</a></li>
             <li><a href="/auth/logout.php">Logout</a></li>
 

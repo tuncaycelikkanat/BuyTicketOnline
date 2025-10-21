@@ -126,7 +126,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['user_id'], $_POST['co
     <script>
         $(document).ready(function() {
             $('.user-select').select2({
-                placeholder: "Search user by name or email...",
+                placeholder: "Search name or email",
                 width: '300px'
             });
         });
