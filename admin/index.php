@@ -19,6 +19,7 @@ require_role('admin'); //I just spent 1 hour to find it !!! require_role('adimn'
     <h1>Only Admins Can See This Page.</h1>
     <ul>
         <li><a href="/admin/firms.php">Firms</a></li>
+        <li><a href="/admin/coupons.php">Coupons</a></li>
     </ul>
 </body>
 
