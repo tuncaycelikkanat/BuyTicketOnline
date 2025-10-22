@@ -38,11 +38,11 @@
 │   └── users.php            # Kullanıcı listesi (opsiyonel)
 │
 ├── /firma_admin/            # Firma admin paneli (kendi firması için)
-│   ├── index.php
-│   ├── routes.php           # Sefer CRUD
-│   ├── route_edit.php
-│   ├── coupons.php          # Firma özel kuponlar
-│   └── coupon_edit.php
+│   ├── index.php✅
+│   ├── routes.php✅           # Sefer CRUD
+│   ├── route_edit.php✅
+│   ├── coupons.php✅          # Firma özel kuponlar
+│   └── coupon_edit.php✅
 │
 ├── /assets/✅                 # Statik dosyalar (görseller, CSS, JS)
 │   ├── /css/✅
