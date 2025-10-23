@@ -29,21 +29,24 @@ include 'includes/functions.php';
 
     <ul>
         <?php if (user_role() === 'guest'): ?>
+            <li><a href="/routes/list.php">Search Routes</li>
             <li><a href="/auth/login.php">Login</a></li>
             <li><a href="/auth/register.php">Signup</a></li>
 
         <?php elseif (user_role() === 'user'): ?>
-            <li><a href="routes.php">Search</a></li>
+            <li><a href="/routes/list.php">Search Routes</li>
             <li><a href="my_tickets.php">My Tickets</a></li>
             <li><a href="/auth/profile.php">My Account</a></li>
             <li><a href="/auth/logout.php">Logout</a></li>
 
         <?php elseif (user_role() === 'company'): ?>
+            <li><a href="/routes/list.php">Search Routes</li>
             <li><a href="/firm_admin/index.php">Firm Panel</a></li>
             <li><a href="/auth/profile.php">My Account</a></li>
             <li><a href="/auth/logout.php">Logout</a></li>
 
         <?php elseif (user_role() === 'admin'): ?>
+            <li><a href="/routes/list.php">Search Routes</li>
             <li><a href="/admin/index.php">Admin Panel</a></li>
             <li><a href="/auth/logout.php">Logout</a></li>
             <!-- <li><a href="/test/testSession.php">Test Session</a></li> -->

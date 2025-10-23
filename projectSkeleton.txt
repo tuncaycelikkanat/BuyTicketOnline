@@ -34,7 +34,7 @@
 │   ├── firms.php✅            # Firma CRUD
 │   ├── firm_edit.php✅
 │   ├── firm_admins.php✅      # Firma admin yönetimi
-│   ├── coupons.php          # Tüm sistem kupon yönetimi
+│   ├── coupons.php✅          # Tüm sistem kupon yönetimi
 │   └── users.php            # Kullanıcı listesi (opsiyonel)
 │
 ├── /firma_admin/            # Firma admin paneli (kendi firması için)
