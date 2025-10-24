@@ -3,7 +3,8 @@ define('ROOT_PATH', dirname(__DIR__));
 require_once ROOT_PATH . '/includes/config.php';
 include ROOT_PATH . '/includes/functions.php';
 
-is_login();
+if (!is_login())
+    header('Location: /auth/login.php');
 
 // Trip id cehck
 if (!isset($_GET['id'])) {
@@ -55,15 +56,7 @@ $capacity = (int)$trip['capacity'];
     <p><strong>Departure:</strong> <?= htmlspecialchars($trip['departure_city']) ?> — <?= date("d.m.Y H:i", strtotime($trip['departure_time'])) ?></p>
     <p><strong>Destination:</strong> <?= htmlspecialchars($trip['destination_city']) ?></p>
     <p><strong>Price:</strong> <?= $trip['price'] ?> TL</p>
-
-    <p><strong>BookedSeatCount:</strong> <?= count($bookedSeats) ?></p>
-    <p><strong>TripID:</strong> <?= $trip_id ?></p>
-
-    <?php foreach ($bookedSeats as $seat): ?>
-        <p><strong>Price:</strong> <?= $seats ?></p>
-
-    <?php endforeach; ?>
-
+    <p><strong>Your Balance:</strong> <?= $_SESSION['user']['balance'] ?> TL</p>
 
     <form action="/routes/purchase.php" method="POST">
         <input type="hidden" name="trip_id" value="<?= $trip_id ?>">

@@ -18,16 +18,16 @@
 │   └── profile.php✅
 │
 ├── /routes/                 # Sefer arama, listeleme, detay ve satın alma işlemleri
-│   ├── list.php             # Sefer arama formu + sonuçlar
-│   ├── detail.php           # Sefer detay sayfası (bilet satın al butonu)
-│   ├── buy.php              # Koltuk seçimi, kupon girişi
-│   ├── purchase.php         # Satın alma işlemi (POST)
-│   └── cancel.php           # Bilet iptali
+│   ├── list.php✅             # Sefer arama formu + sonuçlar
+│   ├── detail.php✅           # Sefer detay sayfası (bilet satın al butonu)
+│   ├── buy.php✅              # Koltuk seçimi, kupon girişi
+│   ├── purchase.php✅         # Satın alma işlemi (POST)
+│   └── cancel.php✅           # Bilet iptali
 │
 ├── /tickets/                # Kullanıcı biletleri
-│   ├── my_tickets.php
+│   ├── my_tickets.php✅
 │   ├── download_pdf.php
-│   └── ticket_view.php
+│   └── ticket_view.php✅
 │
 ├── /admin/                  # Admin paneli ve yönetim modülleri
 │   ├── index.php✅            # Admin ana sayfası

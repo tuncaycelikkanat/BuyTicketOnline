@@ -3,7 +3,8 @@ define('ROOT_PATH', dirname(__DIR__));
 require_once ROOT_PATH . '/includes/config.php';
 include ROOT_PATH . '/includes/functions.php';
 
-is_login();
+if (!is_login())
+    header('Location: /auth/login.php');
 
 //POST
 $trip_id = $_POST['trip_id'] ?? null;
@@ -39,10 +40,10 @@ $stmt->execute([$trip_id, $seat_number]);
 $isBooked = $stmt->fetchColumn();
 
 if ($isBooked) {
-    die("Bu koltuk zaten satın alınmış. Lütfen başka koltuk seçin.");
+    die("This seat is full.");
 }
 
-// kupon kontrol
+//check coupıon
 $applied_coupon_id = null;
 
 if ($coupon_code !== "") {
@@ -51,41 +52,41 @@ if ($coupon_code !== "") {
     $coupon = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($coupon) {
-        $discount = $coupon['discount'];
-        $total_price = $base_price - ($base_price * ($discount / 100));
+        $discount = (int)$coupon['discount'];
+        $total_price = $base_price - $discount;
         $applied_coupon_id = $coupon['id'];
     } else {
-        die("Kupon geçersiz veya süresi dolmuş.");
+        die("Invalid Coupon.");
     }
 }
 
-// kullanıcı bakiyesi yeter mi?
+//check balance
 $stmt = $db->prepare("SELECT balance FROM Users WHERE id = ?");
 $stmt->execute([$user_id]);
 $user_balance = $stmt->fetchColumn();
 
 if ($user_balance < $total_price) {
-    die("Yetersiz bakiye. Mevcut bakiyeniz: {$user_balance} TL");
+    die("Not Enough Balance. Current Balance: {$user_balance} TL");
 }
 
-// ticket kaydet
+//add ticker
 $ticket_id = uuid();
 $stmt = $db->prepare("INSERT INTO Tickets (id, trip_id, user_id, total_price) VALUES (?, ?, ?, ?)");
 $stmt->execute([$ticket_id, $trip_id, $user_id, $total_price]);
 
-// koltuk kaydet
+//add seat
 $stmt = $db->prepare("INSERT INTO Booked_Seats (id, ticket_id, seat_number) VALUES (?, ?, ?)");
 $stmt->execute([uuid(), $ticket_id, $seat_number]);
 
-// bakiye düş
+//decreise balance
 $stmt = $db->prepare("UPDATE Users SET balance = balance - ? WHERE id = ?");
 $stmt->execute([$total_price, $user_id]);
 
-// kupon kullanıldıysa usage düş
-if ($applied_coupon_id) {
+//-1 couppn usage
+if ($applied_coupon_id != null) {
     $stmt = $db->prepare("UPDATE Coupons SET usage_limit = usage_limit - 1 WHERE id = ?");
     $stmt->execute([$applied_coupon_id]);
 }
 
-header("Location: ticket_success.php?id=" . $ticket_id);
+header("Location: /tickets/ticket_view.php?id=" . $ticket_id);
 exit;
