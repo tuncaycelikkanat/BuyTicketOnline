@@ -7,6 +7,8 @@ require_role('company');
 ?>
 
 <?php
+if (!is_login())
+    header('Location: /auth/login.php');
 
 $firm_id = $_SESSION['user']['company_id'];
 $firm = null;

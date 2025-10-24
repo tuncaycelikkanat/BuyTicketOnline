@@ -7,6 +7,9 @@ require_role('admin');
 ?>
 
 <?php
+if (!is_login())
+    header('Location: /auth/login.php');
+
 $firm = null;
 
 $stmt = $db->prepare("SELECT * FROM Bus_Company WHERE id = ?");

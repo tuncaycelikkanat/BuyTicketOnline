@@ -7,6 +7,9 @@ require_role('admin');
 ?>
 
 <?php
+if (!is_login())
+    header('Location: /auth/login.php');
+
 if (isset($_GET['delete'])) { //delete uploaded photo also.
     $id = $_GET['delete'];
     $stmt = $db->prepare("DELETE FROM Bus_Company WHERE id = ?");

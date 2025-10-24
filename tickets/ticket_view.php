@@ -3,6 +3,9 @@ define('ROOT_PATH', dirname(__DIR__));
 require_once ROOT_PATH . '/includes/config.php';
 require_once '../includes/header.php';
 
+if (!is_login())
+    header('Location: /auth/login.php');
+
 //check id
 if (!isset($_GET['id'])) {
     die("Ticket ID is missing.");

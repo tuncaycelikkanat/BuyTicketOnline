@@ -7,6 +7,9 @@ require_role('company');
 ?>
 
 <?php
+if (!is_login())
+    header('Location: /auth/login.php');
+
 $edit_mode = isset($_GET['id']);
 $trip = null;
 
