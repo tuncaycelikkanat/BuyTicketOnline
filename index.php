@@ -115,7 +115,7 @@ require_once 'includes/header.php';
                     <li><a href="/auth/register.php">Signup</a></li>
                 <?php elseif (user_role() === 'user'): ?>
                     <li><a href="/routes/list.php">Search Routes</a></li>
-                    <li><a href="my_tickets.php">My Tickets</a></li>
+                    <li><a href="/tickets/my_tickets.php">My Tickets</a></li>
                     <li><a href="/auth/logout.php" class="logout">Logout</a></li>
                 <?php elseif (user_role() === 'company'): ?>
                     <li><a href="/routes/list.php">Search Routes</a></li>

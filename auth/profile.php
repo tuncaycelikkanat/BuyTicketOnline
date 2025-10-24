@@ -11,6 +11,18 @@ if (!is_login())
 $stmt = $db->prepare("SELECT * FROM Users WHERE id = ?");
 $stmt->execute([$_SESSION['user']['id']]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+//add balance
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['amount'])) {
+    $amount = floatval($_POST['amount']);
+    if ($amount > 0) {
+        $newBalance = $user['balance'] + $amount;
+        $update = $db->prepare("UPDATE Users SET balance = ? WHERE id = ?");
+        $update->execute([$newBalance, $user['id']]);
+        $user['balance'] = $newBalance;
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -94,6 +106,46 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
         a.btn-blue:hover {
             background: #00b6cc;
         }
+
+        .balance-form {
+            margin: 20px 0;
+        }
+
+        .balance-form input {
+            width: 250px;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #00eaff;
+            background: #111;
+            color: #0ff;
+            text-align: center;
+            box-shadow: 0 0 8px #00eaff;
+        }
+
+        .balance-form input:focus {
+            outline: none;
+            box-shadow: 0 0 12px #00eaff;
+        }
+
+        .balance-form button {
+            padding: 10px 25px;
+            border-radius: 6px;
+            font-weight: bold;
+            margin-left: 10px;
+            cursor: pointer;
+            border: none;
+            background: #00eaff;
+            color: #000;
+            transition: 0.3s;
+            box-shadow: 0 0 8px #00eaff;
+        }
+
+        .balance-form button:hover {
+            background: #00b6cc;
+            color: #fff;
+            box-shadow: 0 0 14px #00eaff;
+            transform: scale(1.05);
+        }
     </style>
 </head>
 
@@ -115,6 +167,11 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
         </div>
 
         <a class="btn-green" href="/tickets/my_tickets.php">My Tickets</a>
+
+        <form method="POST" class="balance-form">
+            <input type="number" step="0.01" name="amount" placeholder="Balance Amount (₺)" required>
+            <button type="submit" class="btn-blue">Add Balance</button>
+        </form>
     </main>
 
     <?php require_once '../includes/footer.php'; ?>
