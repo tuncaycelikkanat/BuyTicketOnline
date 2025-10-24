@@ -1,6 +1,7 @@
 <?php
 define('ROOT_PATH', dirname(__DIR__));
 require_once ROOT_PATH . '/includes/config.php';
+require_once '../includes/header.php';
 
 //check id
 if (!isset($_GET['id'])) {
@@ -46,3 +47,4 @@ if (!$ticket) {
 </body>
 
 </html>
+<?php require_once '../includes/footer.php'; ?>

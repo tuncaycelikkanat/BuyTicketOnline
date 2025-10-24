@@ -2,7 +2,7 @@
 define('ROOT_PATH', dirname(__DIR__));
 require_once ROOT_PATH . '/includes/config.php';
 include '../includes/functions.php';
-
+require_once '../includes/header.php';
 require_role('company');
 ?>
 
@@ -81,3 +81,4 @@ $trips = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </body>
 
 </html>
+<?php require_once '../includes/footer.php'; ?>

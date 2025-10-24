@@ -2,6 +2,7 @@
 define('ROOT_PATH', dirname(__DIR__));
 require_once ROOT_PATH . '/includes/config.php';
 include '../includes/functions.php';
+require_once '../includes/header.php';
 ?>
 
 <!DOCTYPE html>
@@ -28,8 +29,9 @@ include '../includes/functions.php';
         <li>Company: <strong><?= htmlspecialchars($_SESSION['user']['company_id'] ?? "-") ?></strong></li>
         <li>Balance: <strong><?= htmlspecialchars($_SESSION['user']['balance'] . "$") ?></strong></li>
         <li>Created At: <strong><?= htmlspecialchars($_SESSION['user']['created_at']) ?></strong></li> <br />
-        <a href="../index.php">Main Page</a>
     </ul>
 </body>
 
 </html>
+
+<?php require_once '../includes/footer.php'; ?>

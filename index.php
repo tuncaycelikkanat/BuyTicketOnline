@@ -2,6 +2,7 @@
 define('ROOT_PATH', __DIR__);
 require_once ROOT_PATH . '/includes/config.php';
 include 'includes/functions.php';
+require_once '../includes/header.php';
 ?>
 
 <!DOCTYPE html>
@@ -55,3 +56,4 @@ include 'includes/functions.php';
 </body>
 
 </html>
+<?php require_once '../includes/footer.php'; ?>
