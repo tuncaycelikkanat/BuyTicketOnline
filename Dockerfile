@@ -1,19 +1,19 @@
-# PHP + Apache image
 FROM php:8.2-apache
 
-# SQLite ve PDO desteği
-RUN docker-php-ext-install pdo pdo_sqlite
+# Sistem bağımlılıklarını yükle
+RUN apt-get update && apt-get install -y \
+    libsqlite3-dev \
+    sqlite3 \
+    pkg-config \
+    && docker-php-ext-install pdo pdo_sqlite \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Apache mod_rewrite aktif et
-RUN a2enmod rewrite
-
-# Proje dosyalarını container içine kopyala
+# Proje dosyalarını kopyala
 COPY . /var/www/html/
 
-# Upload ve DB klasörlerini writable yap
+# Upload ve db klasörlerini writable yap
 RUN mkdir -p /var/www/html/uploads && \
     mkdir -p /var/www/html/db && \
     chown -R www-data:www-data /var/www/html/uploads /var/www/html/db
 
-# Apache varsayılan port
 EXPOSE 80
