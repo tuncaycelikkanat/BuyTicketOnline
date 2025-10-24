@@ -4,15 +4,14 @@ require_once ROOT_PATH . '/includes/config.php';
 include '../includes/functions.php';
 require_once '../includes/header.php';
 require_role('admin');
-?>
 
-<?php
 if (!is_login())
     header('Location: /auth/login.php');
 
 $edit_mode = isset($_GET['id']);
 $coupon = null;
 
+// Edit mode
 if ($edit_mode) {
     $stmt = $db->prepare("SELECT * FROM Coupons WHERE id = ?");
     $stmt->execute([$_GET['id']]);
@@ -23,8 +22,11 @@ if ($edit_mode) {
     }
 }
 
+// Get all firms for admin
+$firms = $db->query("SELECT * FROM Bus_Company ORDER BY name")->fetchAll(PDO::FETCH_ASSOC);
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $company_id = $_SESSION['user']['company_id'];
+    $company_id = $_POST['company_id']; // Admin seçtiği firmayı alacak
     $code = trim($_POST['code']);
     $discount = $_POST['discount'];
     $usage_limit = $_POST['usage_limit'];
@@ -118,7 +120,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         input[type="text"],
         input[type="number"],
-        input[type="datetime-local"] {
+        input[type="datetime-local"],
+        select {
             width: 250px;
             padding: 10px;
             border-radius: 6px;
@@ -202,6 +205,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <label>Expire Date:</label>
             <input type="datetime-local" name="expire_date" required value="<?= htmlspecialchars($coupon['expire_date'] ?? '') ?>">
+
+            <label>Company:</label>
+            <select name="company_id" required>
+                <option value="">Select a company</option>
+                <?php foreach ($firms as $f): ?>
+                    <option value="<?= $f['id'] ?>" <?= ($coupon['company_id'] ?? '') === $f['id'] ? 'selected' : '' ?>>
+                        <?= htmlspecialchars($f['name']) ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
 
             <div class="form-buttons">
                 <button type="submit"><?= $edit_mode ? 'Save' : 'Add' ?></button>

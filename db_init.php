@@ -3,7 +3,7 @@
 require_once __DIR__ . '/config.php';
 try {
 
-    $db = new PDO('sqlite:database.sqlite');
+    $db = new PDO('sqlite:/app/database.sqlite');
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); //error mode to catch errors
     $db->exec("PRAGMA foreign_keys = ON;");
 
