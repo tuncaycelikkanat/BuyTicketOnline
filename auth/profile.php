@@ -2,10 +2,11 @@
 define('ROOT_PATH', dirname(__DIR__));
 require_once ROOT_PATH . '/includes/config.php';
 include '../includes/functions.php';
-require_once '../includes/header.php';
 
 if (!is_login())
     header('Location: /auth/login.php');
+
+require_once '../includes/header.php';
 
 // Get live user balance from DB
 $stmt = $db->prepare("SELECT * FROM Users WHERE id = ?");
