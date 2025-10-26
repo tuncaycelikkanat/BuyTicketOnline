@@ -25,6 +25,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['amount'])) {
     }
 }
 
+$stmt = $db->prepare("
+    SELECT Users.*, Bus_Company.name
+    FROM Users
+    LEFT JOIN Bus_Company ON Bus_Company.id = Users.company_id
+    WHERE Users.id = ?
+");
+$stmt->execute([$_SESSION['user']['id']]);
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
+
 ?>
 
 <!DOCTYPE html>
@@ -162,7 +171,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['amount'])) {
                 <li>Email: <strong><?= htmlspecialchars($user['email']) ?></strong></li>
                 <li>Role: <strong><?= htmlspecialchars($user['role']) ?></strong></li>
                 <li class="password-joke">Password: <span class="hidden-password">Just a joke!</span></li>
-                <li>Company: <strong><?= htmlspecialchars($user['company_id'] ?? "-") ?></strong></li>
+                <li>Company: <strong><?= htmlspecialchars($user['name'] ?? "-") ?></strong></li>
                 <li>Balance: <strong><?= htmlspecialchars($user['balance']) ?> ₺</strong></li>
                 <li>Created At: <strong><?= htmlspecialchars($user['created_at']) ?></strong></li>
             </ul>
