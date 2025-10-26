@@ -5,7 +5,3 @@ services:
     build: .
     ports:
       - "8080:80"
-    volumes:
-      - ./yavuzlar:/var/www/html
-      - ./yavuzlar/uploads:/var/www/html/uploads
-      - ./yavuzlar/db:/var/www/html/db
