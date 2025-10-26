@@ -2,11 +2,13 @@
 define('ROOT_PATH', dirname(__DIR__));
 require_once ROOT_PATH . '/includes/config.php';
 include '../includes/functions.php';
-require_once '../includes/header.php';
 require_role('admin');
 
 if (!is_login())
     header('Location: /auth/login.php');
+
+require_once '../includes/header.php';
+
 
 $edit_mode = isset($_GET['id']);
 $coupon = null;

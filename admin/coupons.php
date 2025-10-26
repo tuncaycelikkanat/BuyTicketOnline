@@ -1,7 +1,6 @@
 <?php
 define('ROOT_PATH', dirname(__DIR__));
 require_once ROOT_PATH . '/includes/config.php';
-require_once '../includes/header.php';
 include '../includes/functions.php';
 
 require_role('admin');
@@ -10,6 +9,9 @@ require_role('admin');
 <?php
 if (!is_login())
     header('Location: /auth/login.php');
+
+require_once '../includes/header.php';
+
 
 if (isset($_GET['delete'])) {
     $id = $_GET['delete'];

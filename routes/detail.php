@@ -1,13 +1,15 @@
 <?php
 define('ROOT_PATH', dirname(__DIR__));
 require_once ROOT_PATH . '/includes/config.php';
-require_once '../includes/header.php';
 include '../includes/functions.php';
 
 if (!is_login()) {
     header('Location: /auth/login.php');
     exit;
 }
+
+require_once '../includes/header.php';
+
 
 if (!isset($_GET['id'])) {
     die("Trip ID not provided.");
