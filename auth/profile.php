@@ -5,6 +5,7 @@ include '../includes/functions.php';
 
 if (!is_login())
     header('Location: /auth/login.php');
+require_role(['user', 'company']);
 
 require_once '../includes/header.php';
 
