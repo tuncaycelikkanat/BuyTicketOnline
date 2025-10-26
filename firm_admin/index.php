@@ -3,9 +3,9 @@
     require_once ROOT_PATH . '/includes/config.php';
     include '../includes/functions.php';
 
-    require_role('company');
     if (!is_login())
         header('Location: /auth/login.php');
+    require_role('company');
 
     require_once '../includes/header.php';
 
